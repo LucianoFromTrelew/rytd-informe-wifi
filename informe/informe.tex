@@ -18,19 +18,149 @@
 
 \section{Introducción}
 
+
 \section{IEEE 802.11 (\emph{Wireless LANs})}
+
+En la década de 1990 muchas tecnologías y estándares se crearon para las \emph{redes locales inalámbricas} (\emph{Wireless LANs}), pero sólo se destacó más que el resto. Este es el caso de \textbf{IEEE 802.11 wireless LAN}, también conocido como \textbf{WiFi}.  
+
+Cada vez más las organizaciones hallan indispensable contar con una red inalámbrica a la par de una red tradicional cableada, para satisfacer sus requerimientos de movilidad, reubicación, redes \emph{ad hoc}, y la cobertura de lugares en donde sería difícil armar una infraestructura de cables.
+
+Como su nombre lo indica, una \emph{LAN} inalámbrica es una red local que utiliza un medio inalámbrico para transmitir datos. 
+
+\subsection{Conceptos básicos}
+
+En un ambiente de redes inalámbricas, se pueden identificar los siguientes elementos:
+
+\begin{itemize}
+    \item Nodos inalámbricos (\emph{wireless hosts}): dispositivos corriendo aplicaciones que se valen de la red. Pueden ser computadoras portátiles, \emph{smartphones}, computadoras de escritorio (no necesariamente tienen que ser dispositivos móviles).
+    \item Enlaces inalámbricos (\emph{wireless links}): un nodo se conecta a otro nodo o a una \emph{estación base} a través de un \emph{enlace de comunicación inalámbrico}. Existen distintas tecnologías con diferentes tasas de transmisión y que pueden transmitir sobre diferentes distancias.
+    \item Estación base (\emph{base station}): dispositivo encargado de recibir y enviar datos desde y hacia un nodo que está asociado a la estación base. También es el responsable de coordinar el envío de datos de múltiples nodos asociados. Ejemplos de estaciones base serían las \textbf{torres de celulares}, o los \textbf{\emph{access point}} en una red inalámbricas \emph{WiFi}.
+
+        Los nodos asociados a una estación base pueden operar en \dq{modo infraestructura}, donde todos los servicios de red son provistos por la red a la cual se conectan a través de la estación base, o si no pueden estar conectados a redes \emph{ad hoc}, en las cuales no exista ningún tipo de infraestructura (los mismos nodos deben proveer los servicios de ruteo, asignación de direcciones, resoluciones de nombres).
+    \item Infraestructura de red (\emph{network infrastructure}): red global con la que se quiere comunicar un nodo inalámbrico.
+\end{itemize}
+
+
 
 \subsection{Clasificación}
 
+Existen varios estándares 802.11 para la tecnología de redes locales inalámbricas, entre ellas 802.11b, 802.11a, 802.11g \autocite{Kurose:Wireless}.
+
+Todas ellas usan el mismo \emph{protocolo de control de acceso al medio} (CSMA/CA). También usan la misma estructura para sus tramas de capa de enlace, y pueden reducir su tasa de transmisión para lograr mayores distancias de transferencia. 
+
+Sin embargo, estos estándares tienen diferencias en cuanto a su \textbf{capa física}. El estándar 802.11b tiene una tasa de transferencia de 11 Mbps (megabits por segundo), y opera en la banda de frecuencia de 2.4-2.485 GHz. 802.11a puede lograr tasas de transferencias más altas, pero a mayores frecuencias. Por último, 802.11g opera en la misma banda de frecuencia que 802.11b y brindan retrocompatibilidad con 802.11b; además logra una mayor transmisión que 802.11a. 
+
+\subsection{Motivación}
+
+Cuatro motivaciones o aplicaciones para las redes de área local inalámbricas son descriptas en \autocite{Stallings:Wireless}:
+
+\begin{itemize}
+    \item Extensión de la \emph{LAN}. Una red inalámbrica ahorra el costo de el cableado de una red local alámbrica y facilita la tarea de la reubicación y otras modificaciones a la estructura de la red. Cabe destacar que en ciertos ambientes resulta muy difícil (hasta imposible o prohibido) armar una red cableada, por lo que una red inalámbrica es la solución ideal.
+    \item Conexión entre varios lugares. Las redes inalámbricas también se pueden implementar para conectar las redes de dos lugares o edificios cercanos (ya sea dichas redes alámbricas o inalámbricas). En este caso, un \emph{enlace inalámbrico punto-a-punto} es utilizado para conectar ambas redes. 
+    \item Acceso nómade. Los usuarios se pueden mover con sus computadores personales e igualmente conectarse a la red (siempre y cuando estén dentro del área que abarque la red)
+    \item Redes \emph{Ad Hoc}. Una red \emph{Ad Hoc} es una red en la cual no existe un servidor centralizado, sino que la conexión es entre pares (\emph{Peer-to-Peer}). Se crea temporalmente para alguna necesidad inmediata y luego se desmantela. 
+\end{itemize}
+
+
 \section{Arquitectura}
+
+El elemento central en la arquitectura del estándar 802.11 es el \emph{\textbf{conjunto de servicios básicos}} (\emph{Basic Service Set, BSS}). Un BSS contiene una o más estaciones inalámbricas y base estación central, conocida como \emph{\textbf{access point}} (\textbf{AP}).
+
+Tanto el adaptor de red de las estaciones inalámbricas como la interfaz inalámbrica del AP tienen direcciones MAC de 6 bytes.
+
+Usualmente, en redes pequeñas (redes hogareñas, por ejemplo), existe un único AP que tiene integrado un router, que conecta todo el BSS a la Internet.
+
+\subsection{Canales y asociación}
+
+Cada estación primero se tiene que \emph{asociar} con un AP para poder recibir o enviar datos a la red. 
+
+Todo AP debe tener un \emph{\textbf{Service Set Identifier} (SSID)} y un \textbf{canal} asignado. 802.11 define 11 canales que se solapan parcialmente. Dos canales cualquiera no se solapan solamente si \emph{están separados por cuatro o más canales}. 
+
+Para poder acceder a la red, la estación se debe unir a una asociándose con un AP (\emph{asociarse} significa que la estación inalámbrica crea un \emph{cable virtual} entre sí misma y el AP). Solamente el AP asociado enviará datos a la estación, y la estación solamente enviará datos hacia la red a través del AP al cual está asociado.
+
+\subsubsection{Conexión a la red}
+
+El estándar 802.11 establece que cada AP periódicamente envíe \emph{\textbf{beacon frames}} al canal que tiene asignado; estas tramas incluirán el SSID del AP y su correspondiente dirección MAC. Las estaciones inalámbricas escanean los 11 canales en busca de estas tramas.
+
+Habitualmente, el nodo selecciona el AP cuyas tramas enviadas sean recibidas con mayor fuerza de la señal (aunque la fuerza de la señal no signifca un buen rendimiento en la red, ya que puede tener muchos clientes conectados).
+
+Este proceso de escanear los canales buscando las tramas se conoce como \textbf{escaneo pasivo}. Una estación también puede realizar un \textbf{escaneo activo}, haciendo \emph{broadcast} de una \textbf{trama de sondeo}, que será recibida por todos los AP dentro del rango inalámbrico de la estación.    
+
+Seleccionado el AP al cual asociarse, el cliente envía una trama con una \textbf{petición de asociación} al AP, y este responde con una trama de \textbf{respuesta de asociación}.
+
+Una vez asociado el nodo al AP, falta unirse a la red a la cual pertenece el AP. Para ello, la terminal llevará a cabo los cuatro pasos necesarios para obtener una dirección IP de forma dinámica (a través de DHCP), enviando los paquetes a la red a través del AP.
+
+El proceso de asociación con un AP puede también involucrar una \textbf{autenticación} por parte del cliente. Esta autenticación puede estar basada en la dirección MAC del adaptador de red del nodo; puede consistir también de un usuario y una contraseña, o de una contraseña solamente.
 
 \section{Servicios}
 
+El estándar IEEE 802.11 define varios servicios que deben brindar las redes inalámbricas para poder ser comparables con una red de área local cableada.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{| c | c | c |}
+\hline
+\textbf{Servicio} & \textbf{Proveedor} & \textbf{Usado para dar soporte a} \\ \hline
+\hline
+Asociación & Sistema de distribución & Entrega de MSDU \\ \hline
+Autenticación & Estación & Acceso a la LAN y seguridad \\ \hline
+Fin de la autenticación & Estación & Acceso a la LAN y seguridad \\ \hline
+Disociación & Sistema de distribución & Entrega de MSDU \\ \hline
+Distribución & Sistema de distribución & Entrega de MSDU \\ \hline
+Integración & Sistema de distribución & Entrega de MSDU \\ \hline
+Entrega de MSDU & Estación & Entrega de MSDU \\ \hline
+Privacidad & Estación & Acceso a la LAN y seguridad \\ \hline
+Reasociación & Sistema de distribución & Entrega de MSDU \\ \hline
+\end{tabular}
+\caption{Servicios de IEEE 802.11 \autocite{Stallings:Wireless:SeptimaEd}}
+\end{table}
+
+%\footnote{Datagrama de la capa de red}
+
 \section{Protocolo de acceso al medio (MAC)}
+
+Una terminal inalámbrica puede empezar a recibir y enviar datos desde y hacia el AP una vez que está asociado.
+
+Múltiples terminales pueden querer transmitir datos en un momento dado sobre el mismo canal, para ello se necesita un \emph{protocolo de acceso múltiples} para coordinar las transmisiones.
+
+Existen tres clases distintas de protocolos de acceso múltiple \autocite{Kurose:Wireless}:
+
+\begin{itemize}
+    \item Partición del canal
+    \item Acceso aleatorio
+    \item Por turnos
+\end{itemize}
+
+El protocolo para acceso múltiples implementado por 802.11 se llama \emph{\textbf{CSMA/CA} (Carrier Sense Multiple Access, with Collision Avoidance)}. 
+
+El funcionamiento del protocolo se puede resumir a que cada estación (ya sea una terminal o un AP) verifica si el canal está ocupado antes de transmitir, absteniéndose si está ocupado.
+
+A diferencia de Ethernet (que también implementa un protocolo CSMA, con detección de colisiones entre dos clientes que quieran enviar datos sobre el medio), el protocolo \emph{MAC} de 802.11 no implementa la detección de colisiones. Esto se debe principalmente a que se necesita poder enviar y recibir sobre un mismo medio (al mismo tiempo) para poder detectar las colisiones. Debido a que la fuerza de la señal recibida es menor a la de la señal enviada, construir hardware que permita detectar colisiones sería muy costoso.
+
+Por lo tanto, una vez que una terminal empieza a transmitir una trama, la envía completamente, sin detenerse ni abortar la operación (como sí hacen los adaptadores Ethernet).
 
 \subsection{Transferencia fiable de datos}
 
+Debido a la alta tasa de error a nivel de bit en los canales inalámbricos, 802.11 utiliza un esquema de \textbf{reconocimiento/retransmisión a nivel de capa de enlace}.
+
+El mecanismo de transferencia consiste en un intercambio de dos tramas - una trama de datos que envía el emisor, y si llegó correctamente el receptor contesta con un ACK. Para incrementar la seguridad, se utiliza también un esquema que consiste en cuatro tramas. El emisor primero envía una trama indicándole que va a transmitir datos (\emph{ \textbf{Requesto to Send}, RTS}); el receptor contesta con una trama especial para indicar que puede enviar datos (\emph{\textbf{Clear to Send}, CTS}). Una vez recibido el CTS, el emisor procede a enviar los datos y luego el receptor contesta con un ACK.
+
+Las tramas RTS/CTS sirven también para alertar a las otras estaciones inalámbricas dentro del rango de recepción de que un intercambio de datos está ocurriendo, de esta forma se abstienen de transmitir datos (evitando así colisiones).
+
 \subsection{Control de Acceso al Medio}
+
+Para evitar colisiones, los nodos que transmiten datos en una red inalámbrica inspeccionan el canal y utilizan \emph{timers} antes de comenzar a transmitir. El procedimiento que siguen es el siguiente:
+
+\begin{enumerate}
+    \item Si el emisor detecta que el canal está disponible (nadie está transmitiendo), envía los datos luego de un tiempo conocido como \emph{\textbf{Espacio entre-tramas distribido}} (\emph{DIFS}, por sus siglas en inglés).
+    \item Si está ocupado, el emisor elige un valor aleatorio de tiempo y espera esa cantidad \textbf{una vez que el canal se encuentre disponible}. Mientras no esté disponible, su \emph{timer} se congela.
+    \item Una vez que el contador llega a cero, el emisor envía toda la trama y espera por su reconocimiento (ACK).
+    \item Si llega un ACK, el emisor sabe que la trama llegó correctamente a destino. Si no llega el ACK, el emisor repite el proceso a partir del paso 2.
+\end{enumerate}
+
+\section{Estructura de la trama}
+
+
 
 
 
