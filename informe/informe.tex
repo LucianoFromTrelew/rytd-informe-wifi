@@ -18,12 +18,9 @@
 
 \section{Introducción}
 
+En la década de 1990 muchas tecnologías y estándares se crearon para las \emph{redes locales inalámbricas} (\emph{Wireless LANs}), pero sólo una se destacó más que el resto. Este es el caso de \textbf{IEEE 802.11 wireless LAN}, también conocido como \textbf{WiFi}.  
 
-\section{IEEE 802.11 (\emph{Wireless LANs})}
-
-En la década de 1990 muchas tecnologías y estándares se crearon para las \emph{redes locales inalámbricas} (\emph{Wireless LANs}), pero sólo se destacó más que el resto. Este es el caso de \textbf{IEEE 802.11 wireless LAN}, también conocido como \textbf{WiFi}.  
-
-Cada vez más las organizaciones hallan indispensable contar con una red inalámbrica a la par de una red tradicional cableada, para satisfacer sus requerimientos de movilidad, reubicación, redes \emph{ad hoc}, y la cobertura de lugares en donde sería difícil armar una infraestructura de cables.
+Cada vez más las organizaciones hallan indispensable contar con una red inalámbrica a la par de una red tradicional cableada, para satisfacer sus requerimientos de movilidad, reubicación, redes \emph{ad hoc}, y cobertura de lugares en donde sería difícil armar una infraestructura de cables.
 
 Como su nombre lo indica, una \emph{LAN} inalámbrica es una red local que utiliza un medio inalámbrico para transmitir datos. 
 
@@ -32,15 +29,17 @@ Como su nombre lo indica, una \emph{LAN} inalámbrica es una red local que utili
 En un ambiente de redes inalámbricas, se pueden identificar los siguientes elementos:
 
 \begin{itemize}
-    \item Nodos inalámbricos (\emph{wireless hosts}): dispositivos corriendo aplicaciones que se valen de la red. Pueden ser computadoras portátiles, \emph{smartphones}, computadoras de escritorio (no necesariamente tienen que ser dispositivos móviles).
-    \item Enlaces inalámbricos (\emph{wireless links}): un nodo se conecta a otro nodo o a una \emph{estación base} a través de un \emph{enlace de comunicación inalámbrico}. Existen distintas tecnologías con diferentes tasas de transmisión y que pueden transmitir sobre diferentes distancias.
+    \item Nodos inalámbricos (\emph{wireless hosts}): dispositivos corriendo aplicaciones que utilizan la red. Pueden ser computadoras portátiles, \emph{smartphones}, computadoras de escritorio (no necesariamente tienen que ser dispositivos móviles).
+    \item Enlaces inalámbricos (\emph{wireless links}): un nodo se conecta a otro nodo o a una \emph{estación base} a través de un \emph{enlace de comunicación inalámbrico}. Existen distintas tecnologías con diferentes tasas de transmisión y que pueden alcanzar diferentes distancias de transferencia.
     \item Estación base (\emph{base station}): dispositivo encargado de recibir y enviar datos desde y hacia un nodo que está asociado a la estación base. También es el responsable de coordinar el envío de datos de múltiples nodos asociados. Ejemplos de estaciones base serían las \textbf{torres de celulares}, o los \textbf{\emph{access point}} en una red inalámbricas \emph{WiFi}.
 
-        Los nodos asociados a una estación base pueden operar en \dq{modo infraestructura}, donde todos los servicios de red son provistos por la red a la cual se conectan a través de la estación base, o si no pueden estar conectados a redes \emph{ad hoc}, en las cuales no exista ningún tipo de infraestructura (los mismos nodos deben proveer los servicios de ruteo, asignación de direcciones, resoluciones de nombres).
+        Los nodos asociados a una estación base pueden operar en \dq{modo infraestructura}, donde todos los servicios de red son provistos por la red a la cual se conectan a través de la estación base, o si no pueden estar conectados a redes \emph{ad hoc}, en las cuales no existe ningún tipo de infraestructura (los mismos nodos deben proveer los servicios de ruteo, asignación de direcciones, resoluciones de nombres).
     \item Infraestructura de red (\emph{network infrastructure}): red global con la que se quiere comunicar un nodo inalámbrico.
 \end{itemize}
 
 
+
+\section{IEEE 802.11 (\emph{Wireless LANs})}
 
 \subsection{Clasificación}
 
@@ -55,9 +54,9 @@ Sin embargo, estos estándares tienen diferencias en cuanto a su \textbf{capa f�
 Cuatro motivaciones o aplicaciones para las redes de área local inalámbricas son descriptas en \autocite{Stallings:Wireless}:
 
 \begin{itemize}
-    \item Extensión de la \emph{LAN}. Una red inalámbrica ahorra el costo de el cableado de una red local alámbrica y facilita la tarea de la reubicación y otras modificaciones a la estructura de la red. Cabe destacar que en ciertos ambientes resulta muy difícil (hasta imposible o prohibido) armar una red cableada, por lo que una red inalámbrica es la solución ideal.
+    \item Extensión de la \emph{LAN}. Una red inalámbrica ahorra el costo del cableado de una red local alámbrica y facilita la tarea de la reubicación y otras modificaciones a la estructura de la red. Cabe destacar que en ciertos ambientes resulta muy difícil (hasta imposible o prohibido) armar una red cableada, por lo que una red inalámbrica es la solución ideal.
     \item Conexión entre varios lugares. Las redes inalámbricas también se pueden implementar para conectar las redes de dos lugares o edificios cercanos (ya sea dichas redes alámbricas o inalámbricas). En este caso, un \emph{enlace inalámbrico punto-a-punto} es utilizado para conectar ambas redes. 
-    \item Acceso nómade. Los usuarios se pueden mover con sus computadores personales e igualmente conectarse a la red (siempre y cuando estén dentro del área que abarque la red)
+    \item Acceso nómade. Los usuarios se pueden mover con sus computadores personales e igualmente conectarse a la red (siempre y cuando estén dentro del área que abarque la red).
     \item Redes \emph{Ad Hoc}. Una red \emph{Ad Hoc} es una red en la cual no existe un servidor centralizado, sino que la conexión es entre pares (\emph{Peer-to-Peer}). Se crea temporalmente para alguna necesidad inmediata y luego se desmantela. 
 \end{itemize}
 
@@ -82,7 +81,7 @@ Para poder acceder a la red, la estación se debe unir a una asociándose con un
 
 El estándar 802.11 establece que cada AP periódicamente envíe \emph{\textbf{beacon frames}} al canal que tiene asignado; estas tramas incluirán el SSID del AP y su correspondiente dirección MAC. Las estaciones inalámbricas escanean los 11 canales en busca de estas tramas.
 
-Habitualmente, el nodo selecciona el AP cuyas tramas enviadas sean recibidas con mayor fuerza de la señal (aunque la fuerza de la señal no signifca un buen rendimiento en la red, ya que puede tener muchos clientes conectados).
+Habitualmente, el nodo selecciona el AP cuyas tramas enviadas sean recibidas con mayor fuerza de la señal (aunque la fuerza de la señal no significa un buen rendimiento en la red, ya que puede tener muchos clientes conectados).
 
 Este proceso de escanear los canales buscando las tramas se conoce como \textbf{escaneo pasivo}. Una estación también puede realizar un \textbf{escaneo activo}, haciendo \emph{broadcast} de una \textbf{trama de sondeo}, que será recibida por todos los AP dentro del rango inalámbrico de la estación.    
 
@@ -141,9 +140,9 @@ Por lo tanto, una vez que una terminal empieza a transmitir una trama, la envía
 
 \subsection{Transferencia fiable de datos}
 
-Debido a la alta tasa de error a nivel de bit en los canales inalámbricos, 802.11 utiliza un esquema de \textbf{reconocimiento/retransmisión a nivel de capa de enlace}.
+Debido a la alta tasa de error a nivel de bit en los canales inalámbricos, 802.11 utiliza un esquema de \textbf{reconocimiento/retransmisión a nivel de capa de enlace} (\textbf{ARQ}).
 
-El mecanismo de transferencia consiste en un intercambio de dos tramas - una trama de datos que envía el emisor, y si llegó correctamente el receptor contesta con un ACK. Para incrementar la seguridad, se utiliza también un esquema que consiste en cuatro tramas. El emisor primero envía una trama indicándole que va a transmitir datos (\emph{ \textbf{Requesto to Send}, RTS}); el receptor contesta con una trama especial para indicar que puede enviar datos (\emph{\textbf{Clear to Send}, CTS}). Una vez recibido el CTS, el emisor procede a enviar los datos y luego el receptor contesta con un ACK.
+El mecanismo de transferencia consiste en un intercambio de dos tramas - una trama de datos que envía el emisor, y si llegó correctamente el receptor contesta con un ACK. Para incrementar la fiabilidad de la transmisión, se puede utilizar un esquema que consiste en el intercambio de cuatro tramas. El emisor primero envía una trama indicándole que va a transmitir datos (\emph{\textbf{Requesto to Send}, RTS}); el receptor contesta con una trama especial para indicar que puede enviar datos (\emph{\textbf{Clear to Send}, CTS}). Una vez recibido el CTS, el emisor procede a enviar los datos y luego el receptor contesta con un ACK.
 
 Las tramas RTS/CTS sirven también para alertar a las otras estaciones inalámbricas dentro del rango de recepción de que un intercambio de datos está ocurriendo, de esta forma se abstienen de transmitir datos (evitando así colisiones).
 
@@ -159,6 +158,41 @@ Para evitar colisiones, los nodos que transmiten datos en una red inalámbrica i
 \end{enumerate}
 
 \section{Estructura de la trama}
+
+La estructura de una trama 802.11 es muy similar a una trama Ethernet, aunque con algunas diferencias. La primera que se puede comentar es la presencia de \emph{números de secuencia}, para brindar una transferencia fiable de datos. Los campos de la trama son:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/trama-wifi.png}
+    \caption{Estructura de una trama \emph{WiFi} \autocite{Kurose:Wireless}}
+\end{figure}
+
+\begin{itemize}
+    \item PDU (\emph{Payload}): datos que lleva la trama, mayormente es un datagrama IP o un paquete ARP. Puede ser de hasta 2312 bytes pero habitualmente es menor o igual a 1500 bytes
+    \item CRC (\emph{Cyclic Redundancy Check}): palabra de 32 bits que sirve para detectar errores en el receptor.
+    \item Direcciones: una trama 802.11 puede llevar hasta \emph{cuatro direcciones MAC} (tres son necesarias para transferir un datagrama de capa de red desde una terminal inalámbrica hasta la interfaz de un router, a través de un AP; la cuarta dirección es para trabajar en modo \emph{Ad Hoc}).
+    \begin{itemize}
+        \item Dirección 1: dirección MAC del receptor
+        \item Dirección 2: dirección MAC del emisor
+        \item Dirección 3: dirección MAC de la interfaz del router que forma parte del \emph{BSS} 
+    \end{itemize}
+    \item Número de secuencia: enumeración de los bytes enviados en cada trama; tiene la misma funcionalidad que el número de secuencia en TCP.
+    \item Duración: cuando un nodo está transmitiendo datos por un canal, tiene reservado el canal por un tiempo determinado. Este campo de duración indica ese valor.
+    \item Campos de control:
+    \begin{itemize}
+        \item \emph{Versión del protocolo}
+        \item \emph{Tipo} y \emph{subtipo:} distinguen si la trama es para una petición/respuesta de asociación, si es RTS/CTS, un ACK, o una trama con datos.
+        \item \emph{Hacia AP} y \emph{desde AP}: definen el \emph{significado} de los diferentes campos de dirección (pueden cambiar si se trabaja en modo \emph{infraestructura} o en modo \emph{Ad Hoc})
+        \item \emph{More frag}: indica si vienen fragmentos después de la trama. 
+        \item \emph{Retry}: indica si es una retransmisión 
+        \item \emph{Power Management}: indica si la estación está en modo \emph{ahorro de energía}.  
+        \item \emph{More data}: indica si el AP tiene datos en un buffer que están destinados para una estación que está en modo \emph{ahorro de energía}.  
+        \item \emph{WEP}: indica si se está utilizando o no la el algoritmo \emph{WEP} para encriptar los datos de la trama.
+        \item \emph{Rsvd}: indica si la transmisión tiene alguna restricción. 
+    \end{itemize}
+
+\end{itemize}
+
 
 
 
